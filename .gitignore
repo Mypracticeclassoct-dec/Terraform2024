@@ -1,4 +1,4 @@
 # directory of terraform
 **/.terraform/* 
 # terraform lock file 
-*.terrafrom.lock.hcl* 
+.terraform.lock.hcl
