@@ -36,3 +36,25 @@ resource "aws_route_table_association" "a" {
     route_table_id = aws_route_table.terraform_rt.id 
     subnet_id = aws_subnet.subnet_tr.id 
 }
+# security group
+resource "aws_security_group" "sg_terraform"{
+    name = "terraform_sg"
+    egress {
+        from_port = 22
+        to_port = 22
+        protocol = "ssh"
+    }
+    egress {
+        from_port = 443
+        to_port = 443      
+        protocol = "tcp"
+    }
+    egress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+    }
+    tags = {
+        Name = "terrafrom"
+    }
+}
