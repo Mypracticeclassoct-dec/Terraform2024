@@ -2,3 +2,4 @@
 **/.terraform/* 
 # terraform lock file 
 .terraform.lock.hcl
+*terraform.*

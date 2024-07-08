@@ -16,7 +16,11 @@ resource "aws_subnet" "subnet_tr"{
 }
 # creating the internet-gatway
 resource "aws_internet_gateway" "terraform_intgateway" {
-    vpc_id = aws_vpc.terraform_vpc.id 
+   # vpc_id = aws_vpc.terraform_vpc.id 
+   tags = {
+    Name = "terraform"
+   }
+
 }
 # internet-gateway attachment 
 resource "aws_internet_gateway_attachment" "intattch"{
@@ -39,17 +43,39 @@ resource "aws_route_table_association" "a" {
 # security group
 resource "aws_security_group" "sg_terraform"{
     name = "terraform_sg"
-    egress {
+    vpc_id = aws_vpc.terraform_vpc.id 
+    ingress {
+        cidr_blocks = ["0.0.0.0/0"]
         from_port = 22
         to_port = 22
-        protocol = "ssh"
+        protocol = "tcp"
+    }
+    ingress {
+        cidr_blocks = ["0.0.0.0/0"]
+        from_port = 443
+        to_port = 443      
+        protocol = "tcp"
+    }
+    ingress {
+        cidr_blocks = ["0.0.0.0/0"]
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
     }
     egress {
+        cidr_blocks = ["0.0.0.0/0"]
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+    }
+    egress {
+        cidr_blocks = ["0.0.0.0/0"]
         from_port = 443
         to_port = 443      
         protocol = "tcp"
     }
     egress {
+        cidr_blocks = ["0.0.0.0/0"]
         from_port = 80
         to_port = 80
         protocol = "tcp"
