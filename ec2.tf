@@ -3,7 +3,7 @@ data "aws_ami" "machine"{
     most_recent = true
     filter{
         name = "name"
-        values = [ "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*" ] # checks the ami name from ami's 
+        values = [ "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20240701.1" ] # checks the ami name from ami's 
     }
     filter {
       name = "virtualization-type"
