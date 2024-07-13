@@ -1,5 +1,6 @@
 # directory of terraform
 **/.terraform/* 
+**/screenshots/*
 # terraform lock file 
 .terraform.lock.hcl
 *terraform.*
